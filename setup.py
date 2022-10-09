@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'Project1'
+package_name = 'projects'
 
 setup(
     name=package_name,
