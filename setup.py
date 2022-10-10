@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'joy = project1.joy:main',
+        'joy = projects.joy:main',
         ],
     },
 )
