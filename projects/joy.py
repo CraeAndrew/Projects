@@ -26,20 +26,20 @@ class Joy_Count(Node):
 
         #self.publisher = self.create_publisher(Int16, 'led_color', 10)
 
-        #self.publisher2 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
+        self.publisher2 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
 
 
     def listener_callback(self, msg):
         
         control=VehCmd()
         
-        control.throttle = (msg.axes[1])*100
-        control.steering = (msg.axes[0])*-45
+        control.throttle_effort = (msg.axes[1])*100
+        control.steering_angle = (msg.axes[0])*-45
     
         self.get_logger().info('"%s"' % control)
         
         #self.publisher.publish()
-        #self.publisher2.publish(control)
+        self.publisher2.publish(control)
 
 def main(args=None):
     rclpy.init(args=args)
