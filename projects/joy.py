@@ -5,7 +5,7 @@ from sensor_msgs.msg import Joy
 
 from std_msgs.msg import Int16
 
-#from drive_interfaces.msg import VehCmd
+from drive_interfaces.msg import VehCmd
 
 from geometry_msgs.msg import Twist
 
@@ -31,19 +31,12 @@ class Joy_Count(Node):
 
     def listener_callback(self, msg):
         
+        control=VehCmd()
         
-        throttle = (msg.axes[1])*100
-        #steering = msg.axes[0]
-       
-        #control = VehCmd()
-        #doing one left or right variable for throttle or steering
-        #throttle_effort = 0.00 to 100.00 %
-            # (-) throttle is reverse
-        #steering_angle = -45 to 45 (degrees)
-            # (-) is left , (+) is right
-        
-        self.get_logger().info('"%s"' % throttle)
-        self.get_logger().info('"%s"' % msg.axes[0])
+        control.throttle = (msg.axes[1])*100
+        control.steering = (msg.axes[0])*-45
+    
+        self.get_logger().info('"%s"' % control)
         
         #self.publisher.publish()
         #self.publisher2.publish(control)
