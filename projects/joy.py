@@ -24,11 +24,24 @@ class Joy_Count(Node):
             Joy,'joy',self.listener_callback,10)
         self.subscription  # prevent unused variable warning
 
-        #self.publisher = self.create_publisher(Int16, 'led_color', 10)
+        self.timer = self.create_timer(3, self.timer_callback)
+        
+        self.publisher = self.create_publisher(Int16, 'led_color', 10)
 
         self.publisher2 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
 
+    def timer_callback(self):
+        
+        light = Int16()
+        
+        for i in range(1,3):
+                        
+            light.data = i
 
+            self.get_logger().info('"%s"' % light.data)
+            
+            self.publisher.publish(light)
+        
     def listener_callback(self, msg):
         
         control=VehCmd()
