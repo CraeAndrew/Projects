@@ -50,7 +50,7 @@ class Joy_Count(Node):
         control=VehCmd()
         
         control.throttle_effort = (msg.axes[1])*100
-        control.steering_angle = (msg.axes[0])*-45
+        control.steering_angle = (msg.axes[0])*45
     
         #self.get_logger().info('"%s"' % control)
         
